@@ -1,0 +1,3 @@
+git init
+git submodule add https://github.com/janfdev/notes-app-fe  frontend
+git submodule add https://github.com/janfdev/notes-app-be backend
