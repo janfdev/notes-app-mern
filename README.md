@@ -36,7 +36,7 @@ Gantilah `<username>`, `<password>`, dan `notesapp` sesuai konfigurasi milikmu.
 ### 1. Clone repositori
 
 ```bash
-git clone https://github.com/username/notes-app.git
+git clone https://github.com/janfdev/notes-app-mern.git
 cd notes-app
 ```
 
