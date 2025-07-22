@@ -12,9 +12,9 @@ app.use(cors({ origin: "*" }));
 
 app.get("/", (req, res) => res.json({ message: "API running" }));
 
-app.use("/auth", require("./src/modules/auth/routes/auth.routes"));
-// app.use("/notes", require("./routes/note.routes"));
-app.use("/users", require("./src/modules/user/routes/user.routes"));
+app.use("/api/auth", require("./src/modules/auth/routes/auth.routes"));
+app.use("/api/notes", require("./src/modules/notes/routes/note.routes"));
+app.use("/api/users", require("./src/modules/user/routes/user.routes"));
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

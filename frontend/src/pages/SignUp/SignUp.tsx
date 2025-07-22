@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarDashboard";
 import { useState } from "react";
 import { validateEmail } from "../../utils/helper";
 import PasswordInput from "../../components/input/PasswordInput";
@@ -36,7 +36,7 @@ const SignUp = () => {
     // Sign Up API Call
 
     try {
-      const response = await axiosInstance.post("/auth/register", {
+      const response = await axiosInstance.post("/api/auth/register", {
         fullName: name,
         email: email,
         password: password,
@@ -67,7 +67,6 @@ const SignUp = () => {
   };
   return (
     <>
-      <Navbar />
       <div className="flex items-center justify-center h-[80vh]">
         <div className="w-96 rounded-lg shadow h-auto p-10 bg-white relative overflow-hidden">
           <div className="flex flex-col justify-center items-center space-y-5">

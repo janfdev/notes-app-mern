@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../ui/button";
+import { Mail, UserCircle } from "lucide-react";
 
 type ProfileInfoProps = {
   onLogout: () => void;
@@ -33,24 +34,26 @@ const ProfileInfo = ({ userInfo, onLogout }: ProfileInfoProps) => {
             {handleInitials(userInfo.fullName)}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
+        <DropdownMenuContent className="px-4">
           <DropdownMenuLabel>User Info</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuCheckboxItem>
+            <UserCircle />
             <h3 className="capitalize text-[15px] font-bold">
               {userInfo.fullName}
             </h3>
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem>
+            <Mail />
             <p className=" text-[15px] font-bold">{userInfo.email}</p>
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem>
             <button
               onClick={onLogout}
-              className="bg-red-500 cursor-pointer flex items-center justify-between w-full text-white p-3 rounded-md"
+              className="bg-red-500 cursor-pointer flex items-center justify-between gap-3 text-white py-1.5 px-2 w-full rounded-md"
             >
-              <p className="text-sm">Logout</p>
-              <HiOutlineLogout size={24} />
+              <HiOutlineLogout />
+              <p>Logout</p>
             </button>
           </DropdownMenuCheckboxItem>
         </DropdownMenuContent>

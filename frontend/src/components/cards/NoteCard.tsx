@@ -5,7 +5,7 @@ import { CiStar } from "react-icons/ci";
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 
 import {
@@ -14,7 +14,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { TooltipDesc } from "../ui/tooltipDesc";
@@ -40,11 +40,11 @@ const NoteCard = ({
   isPinned,
   onEdit,
   onDelete,
-  onPinNote
+  onPinNote,
 }: NoteCardProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <Card className="border rounded-md  md:mx-0 mx-5 bg-white  hover:shadow-2xl transition-all ease-in-out">
+    <Card className="border rounded-md  md:mx-0 mx-5 hover:shadow-2xl transition-all ease-in-out">
       <CardHeader
         className="flex items-center justify-between
       "
@@ -53,12 +53,12 @@ const NoteCard = ({
           <CardTitle className="font-poppins text-lg capitalize text-wrap line-clamp-3">
             {title?.slice(0, 25)}
           </CardTitle>
-          <CardDescription className="text-xs capitalize text-gray-500">
+          <CardDescription className="text-xs capitalize dark:text-primary">
             {moment(date).fromNow()} • {moment(date).format("DD MMM YYYY")}
           </CardDescription>
         </div>
         <button
-          className={`text-xl text-slate-600 cursor-pointer rounded-full border border-slate-600 w-10 h-10 flex items-center justify-center ${
+          className={`text-xl text-primary cursor-pointer rounded-full border border-primary w-10 h-10 flex items-center justify-center ${
             isPinned
               ? "text-yellow-500 fill-yellow-400 border-yellow-500 bg-yellow-200"
               : "text-black border-black hover:text-yellow-500 hover:border-yellow-500"
@@ -69,13 +69,13 @@ const NoteCard = ({
         </button>
       </CardHeader>
 
-      <CardContent className="text-wrap capitalize text-xs text-slate-600 mt-2">
+      <CardContent className="text-wrap capitalize text-xs mt-2">
         {content?.slice(0, 60)}
       </CardContent>
       <CardFooter className="flex items-center justify-between mt-2">
         <div className="flex gap-2 flex-wrap">
           {tags.map((tag, index) => (
-            <Badge variant={"outline"} key={index}>
+            <Badge variant={"outline"} key={index} className="border-2">
               #{tag}
             </Badge>
           ))}
@@ -113,9 +113,7 @@ const NoteCard = ({
             isOpen={isOpen}
             openChange={setIsOpen}
             onConfirm={onDelete}
-          >
-          
-          </ConfirmDeleteDialog>
+          ></ConfirmDeleteDialog>
         </div>
       </CardFooter>
     </Card>

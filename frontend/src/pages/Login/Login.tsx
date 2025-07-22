@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarDashboard";
 import PasswordInput from "../../components/input/PasswordInput";
 import { useState } from "react";
 import { validateEmail } from "../../utils/helper";
@@ -28,7 +28,7 @@ const Login = () => {
 
     // Login API Call
     try {
-      const response = await axiosInstance.post("/auth/login", {
+      const response = await axiosInstance.post("/api/auth/login", {
         email: email,
         password: password,
       });
@@ -55,7 +55,6 @@ const Login = () => {
   };
   return (
     <>
-      <Navbar />
       <div className="flex items-center justify-center h-[80vh]">
         <div className="w-96 rounded-lg shadow h-auto p-10 bg-white relative overflow-hidden">
           <div className="flex flex-col justify-center items-center space-y-5">

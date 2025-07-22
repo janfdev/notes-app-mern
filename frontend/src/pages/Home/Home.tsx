@@ -1,8 +1,8 @@
 import HeroSection from "@/components/section/HeroSection";
 import FeaturesPage from "@/components/section/features";
 import FooterPage from "@/components/section/footer-05";
-import Navbar02Page from "@/components/navbar/navbar-02";
-import StepBar from "@/components/Stepp/StepBar";
+import Navbar02Page from "@/components/navbar/navbar-home";
+import StepBar from "@/components/stepper/StepBar";
 
 const Home = () => {
   return (

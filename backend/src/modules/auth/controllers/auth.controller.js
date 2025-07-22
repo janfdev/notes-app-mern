@@ -24,15 +24,20 @@ exports.register = async (req, res) => {
     const user = new User({ fullName, email, password });
     await user.save();
 
-    const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "36000m",
+    const payload = {
+      userId: user._id,
+      email: user.email,
+    };
+
+    const accessToken = jwt.sign(payload, process.env.JWT_TOKEN_SECRET, {
+      expiresIn: "36000m", // 25 hari
     });
 
     res.json({
       error: false,
       user,
       accessToken,
-      messsage: "Registration successfully",
+      message: "Registration successful",
     });
   } catch (err) {
     res.status(500).json({
@@ -44,6 +49,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
   if (!email || !password) {
     return res.status(400).json({
       error: true,
@@ -60,22 +66,20 @@ exports.login = async (req, res) => {
         .json({ error: true, message: "Invalid Credentials" });
     }
 
-    const accessToken = jwt.sign(
-      {
-        user: userInfo,
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "36000m",
-      }
-    );
+    const payload = {
+      userId: userInfo._id,
+      email: userInfo.email,
+    };
+
+    const accessToken = jwt.sign(payload, process.env.JWT_TOKEN_SECRET, {
+      expiresIn: "36000m",
+    });
 
     res.json({
       error: false,
-      message: "Login successfully",
+      message: "Login successful",
       accessToken,
     });
-    console.log("Decoded user from token:", req.user);
   } catch (err) {
     res.status(500).json({ error: true, message: "Server error" });
   }

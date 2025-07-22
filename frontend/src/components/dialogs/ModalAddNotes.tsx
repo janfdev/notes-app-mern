@@ -9,12 +9,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "../ui/textarea";
 import { DialogClose } from "@radix-ui/react-dialog";
 import axiosInstance from "@/utils/axiosInstance";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import TagInput from "./input/TagInput";
+import TagInput from "../input/TagInput";
 import { toast } from "react-toastify";
 
 type NoteData = {
@@ -71,14 +71,14 @@ export function ModalAddNotes({
 
     try {
       if (type === "edit" && noteData?._id) {
-        await axiosInstance.put(`/notes/${noteData._id}`, {
+        await axiosInstance.put(`/api/notes/${noteData._id}`, {
           title,
           content,
           tags,
         });
         toast.success("Note Updated Successfully");
       } else {
-        await axiosInstance.post("/notes", {
+        await axiosInstance.post("/api/notes", {
           title,
           content,
           tags,

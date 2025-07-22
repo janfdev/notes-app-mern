@@ -1,6 +1,6 @@
 import { MdAdd } from "react-icons/md";
 import NoteCard from "../../components/cards/NoteCard";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarDashboard";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -10,7 +10,7 @@ import { UserInfo } from "../../utils/types/types";
 import EmptyCard from "../../components/section/EmptyCard";
 import noteEmpty from "../../assets/image/note-empty.svg";
 import noData from "../../assets/image/no-data.svg";
-import { ModalAddNotes } from "@/components/ModalAddNotes";
+import { ModalAddNotes } from "@/components/dialogs/ModalAddNotes";
 import { Button } from "@/components/ui/button";
 
 type Note = {
@@ -57,7 +57,7 @@ const Dashboard: React.FC = () => {
   // Get user info
   const getUserInfo = async () => {
     try {
-      const response = await axiosInstance.get("/users/me");
+      const response = await axiosInstance.get("/api/users/me");
       if (response.data && response.data.user) {
         setUserInfo(response.data.user);
         console.log("User response", response.data.user);
@@ -68,7 +68,6 @@ const Dashboard: React.FC = () => {
         if (err.response?.data?.message) {
           console.error(err.response.data.message);
           console.log("User response", err);
-          // localStorage.clear();
           navigate("/");
         } else {
           console.error(
@@ -82,7 +81,7 @@ const Dashboard: React.FC = () => {
   // Get all notes
   const getAllNotes = async () => {
     try {
-      const response = await axiosInstance.get("/notes/");
+      const response = await axiosInstance.get("/api/notes/");
 
       if (response.data && response.data.notes) {
         setAllNotes(response.data.notes);
@@ -95,7 +94,7 @@ const Dashboard: React.FC = () => {
   // Delete Notes
   const deleteNotes = async (noteId: string) => {
     try {
-      const response = await axiosInstance.delete(`/notes/${noteId}`);
+      const response = await axiosInstance.delete(`/api/notes/${noteId}`);
 
       if (response.data && !response.data.error) {
         getAllNotes();
@@ -112,9 +111,12 @@ const Dashboard: React.FC = () => {
   // Update pin
   const updatePinned = async (noteData: Note) => {
     try {
-      const response = await axiosInstance.patch(`notes/${noteData._id}/pin`, {
-        isPinned: !noteData.isPinned,
-      });
+      const response = await axiosInstance.patch(
+        `/api/notes/${noteData._id}/pin`,
+        {
+          isPinned: !noteData.isPinned,
+        }
+      );
 
       if (response.data && !response.data.error) {
         setRefreshTrigger((prev) => prev + 1);
@@ -134,7 +136,7 @@ const Dashboard: React.FC = () => {
   // Search for a note
   const onSearchNote = async (query: string) => {
     try {
-      const response = await axiosInstance.get("/notes/search", {
+      const response = await axiosInstance.get("/api/notes/search", {
         params: { query },
       });
 
