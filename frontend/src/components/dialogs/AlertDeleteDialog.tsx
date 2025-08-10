@@ -7,13 +7,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
-import { ReactNode } from "react";
-import { Delete } from "./Delete";
+import { Trash } from "lucide-react";
 
 type ConfirmDeleteDialogProps = {
-  children: ReactNode;
   title?: string;
   description?: string;
   onConfirm: () => void;
@@ -24,19 +21,17 @@ type ConfirmDeleteDialogProps = {
 const ConfirmDeleteDialog = ({
   isOpen,
   openChange,
-  children,
   title = "Are you absolutely sure?",
   description = "This action cannot be undone. This will permanently delete your note",
-  onConfirm
+  onConfirm,
 }: ConfirmDeleteDialogProps) => {
   return (
     <AlertDialog open={isOpen} onOpenChange={openChange}>
-      <AlertDialogTrigger>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <div className="flex items-center justify-center">
-            <div className="bg-red-500 w-20 text-center flex items-center justify-center rounded-md">
-              <Delete />
+            <div className="bg-red-500 w-20 text-center py-5 flex items-center justify-center rounded-md">
+              <Trash/>
             </div>
           </div>
           <AlertDialogTitle>{title}</AlertDialogTitle>

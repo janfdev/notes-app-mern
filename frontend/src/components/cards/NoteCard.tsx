@@ -113,7 +113,9 @@ const NoteCard = ({
             isOpen={isOpen}
             openChange={setIsOpen}
             onConfirm={onDelete}
-          ></ConfirmDeleteDialog>
+          >
+          
+          </ConfirmDeleteDialog>
         </div>
       </CardFooter>
     </Card>
