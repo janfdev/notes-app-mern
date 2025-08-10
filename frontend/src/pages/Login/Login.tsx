@@ -1,10 +1,19 @@
 import { Link, useNavigate } from "react-router";
-import Navbar from "../../components/NavbarDashboard";
-import PasswordInput from "../../components/input/PasswordInput";
 import { useState } from "react";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 import { AxiosError } from "axios";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -55,50 +64,56 @@ const Login = () => {
   };
   return (
     <>
-      <div className="flex items-center justify-center h-[80vh]">
-        <div className="w-96 rounded-lg shadow h-auto p-10 bg-white relative overflow-hidden">
-          <div className="flex flex-col justify-center items-center space-y-5">
-            <h2 className="text-2xl font-medium text-slate-700">Login</h2>
-            <p className="text-slate-500">Enter emails below.</p>
-          </div>
-          <form className="w-full mt-4 space-y-3" onSubmit={handleLogin}>
-            <div>
-              <input
-                className="input-box"
-                placeholder="Email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-
-              <PasswordInput
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {error && (
-                <p className="text-red-500 text-sm capitalize">{error}</p>
-              )}
-            </div>
-            <button
-              className="w-full cursor-pointer justify-center py-3 text-lg bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-md text-white ring-2"
-              id="login"
-              name="login"
-              type="submit"
-            >
-              Login
-            </button>
-            <p className="flex justify-center space-x-1">
-              <span className="text-slate-700">
-                {" "}
-                Don't have an account yet?{" "}
-              </span>
-              <Link className="text-blue-500 hover:underline" to="/signup">
-                Sign Up
+      <div className="flex items-center justify-center h-screen">
+        <Card className="w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>Login to your account</CardTitle>
+            <CardDescription>
+              Enter your email below to login to your account
+            </CardDescription>
+            <CardAction>
+              <Link to={"/signup"}>
+                <Button variant="link">Sign Up</Button>
               </Link>
-            </p>
-          </form>
-        </div>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin}>
+              <div className="flex flex-col gap-6">
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={email}
+                    placeholder="example@gmail.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Input
+                    id="password"
+                    value={password}
+                    placeholder="*********"
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    required
+                  />
+                  {error && (
+                    <p className="text-red-500 text-sm capitalize">{error}</p>
+                  )}
+                </div>
+              </div>
+              <div className="mt-5">
+                <Button type="submit" className="w-full">
+                  Login
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </>
   );

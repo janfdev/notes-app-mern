@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import ProfileInfo from "./cards/ProfileInfo";
+import ProfileInfo from "./ProfileInfo";
 import SearchBar from "./search/SearchBar";
 import { UserInfo } from "../utils/types/types";
 import { Logo } from "./navbar/logo";

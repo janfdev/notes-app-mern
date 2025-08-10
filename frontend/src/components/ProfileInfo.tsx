@@ -1,5 +1,5 @@
 import { HiOutlineLogout } from "react-icons/hi";
-import { UserInfo } from "../../utils/types/types";
+import { UserInfo } from "../utils/types/types";
 
 import {
   DropdownMenu,
@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { Mail, UserCircle } from "lucide-react";
 
 type ProfileInfoProps = {
