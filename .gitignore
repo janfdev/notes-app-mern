@@ -9,6 +9,7 @@ backend/.env
 
 # Build folders
 frontend/build/
+frontend/dist/
 backend/dist/
 
 # Config
