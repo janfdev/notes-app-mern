@@ -54,7 +54,7 @@ const TagInput = ({ tags, setTags }: TagInputProps) => {
           {tags.map((tag, i) => (
             <span
               key={i}
-              className="relative bg-slate-100 text-sm px-3 py-1 rounded-md"
+              className="relative bg-slate-100 text-primary text-sm px-3 py-1 rounded-md"
             >
               #{tag}
               <Button
