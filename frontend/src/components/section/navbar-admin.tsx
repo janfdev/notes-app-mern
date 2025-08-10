@@ -20,6 +20,13 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }: NavbarProps) => {
     navigate("/login");
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+    return;
+  };
+
   const handleSearch = () => {
     if (searchQuery) {
       onSearchNote(searchQuery);
@@ -42,6 +49,7 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }: NavbarProps) => {
         </h2>
       </span>
       <SearchBar
+        handleKeyDown={handleKeyDown}
         value={searchQuery}
         onChange={({ target }) => {
           setSearchQuery(target.value);
