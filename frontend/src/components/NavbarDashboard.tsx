@@ -57,9 +57,7 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }: NavbarProps) => {
   };
   return (
     <nav className="flex items-center justify-between border border-b px-6 py-2 drop-shadow top-0 sticky z-30">
-      <span className="flex items-center gap-4">
-        <Logo />
-      </span>
+      <Logo className="w-7 h-7" />
       <SearchBar
         value={searchQuery}
         onChange={({ target }) => {
@@ -73,11 +71,9 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }: NavbarProps) => {
         <Button size="icon" variant="outline" onClick={toggleDarkMode}>
           {darkMode ? <MoonIcon /> : <SunIcon />}
         </Button>
-        {userInfo ? (
+        {userInfo && (
           <ProfileInfo userInfo={userInfo} onLogout={handleLogout} />
-        ) : (
-          <div className="flex items-center gap-x-3"></div>
-        )}{" "}
+        )}
       </div>
     </nav>
   );

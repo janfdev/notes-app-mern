@@ -2,7 +2,7 @@ import { MdAdd } from "react-icons/md";
 import NoteCard from "../../components/cards/NoteCard";
 import Navbar from "../../components/NavbarDashboard";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import axiosInstance from "../../utils/axiosInstance";
 import axios, { AxiosError } from "axios";
@@ -202,19 +202,6 @@ const Dashboard: React.FC = () => {
           />
         )}
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
       <ModalAddNotes
         isOpen={openAddEditModal.isShow}
         setIsOpen={(open) =>

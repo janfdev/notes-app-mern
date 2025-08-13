@@ -18,7 +18,7 @@ const SearchBar = ({
   onClearSearch,
 }: SearchBarProps) => {
   return (
-    <div className="md:w-80 w-60 flex items-center px-4 bg-primary/80 dark:bg-primary/10 rounded-md">
+    <div className="md:w-80 w-40 flex items-center px-4 bg-primary/80 dark:bg-primary/10 rounded-md">
       <input
         type="text"
         placeholder="Search Notes"

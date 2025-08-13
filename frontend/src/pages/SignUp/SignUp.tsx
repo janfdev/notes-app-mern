@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [name, setName] = useState<string>("");
@@ -59,6 +60,7 @@ const SignUp = () => {
 
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
+        toast.success("Registrasi Berhasil");
         navigate("/dashboard");
       }
     } catch (err) {

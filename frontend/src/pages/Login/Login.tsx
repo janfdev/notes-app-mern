@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -45,6 +46,7 @@ const Login = () => {
       // Handle successfull login
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
+        toast.success("Login berhasil");
         navigate("/dashboard");
       }
     } catch (err) {
@@ -56,6 +58,7 @@ const Login = () => {
         error.response.data.message
       ) {
         setError(error.response.data.message);
+        toast.error("error", error.response);
         console.log(error.response.data.message);
       } else {
         setError("An unexpected error occurred. Please try again.");
